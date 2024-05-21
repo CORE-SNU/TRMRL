@@ -1,0 +1,24 @@
+{
+    "env_name": "walker",
+    "n_train_tasks": 120,
+    "n_eval_tasks": 5,
+    "latent_size": 15,
+    "env_params": {
+        "n_tasks": 125
+    }
+    ,
+    "algo_params": {
+        "num_initial_steps": 200,
+        "num_steps_prior": 200,
+        "num_steps_posterior": 0,
+        "num_extra_rl_steps_posterior": 400,
+        "num_train_steps_per_itr": 500,
+        "num_steps_per_eval": 400,
+        "max_path_length": 200,
+        "reward_scale": 5.0,
+	"model_lr": 1E-3,
+	"init_w": 3.0,
+        "kl_lambda": 0.1,
+        "num_iterations": 1000
+    }
+}

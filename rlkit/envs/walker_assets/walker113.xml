@@ -1,0 +1,70 @@
+<mujoco model="planar walker">
+  <include file="./common/visual.xml" />
+  <include file="./common/skybox.xml" />
+  <include file="./common/materials.xml" />
+
+  <option timestep="0.0025" />
+
+  <statistic center="0 0 1" extent="2" />
+
+  <default>
+    <joint armature="0.01" damping=".1" limited="true" solimplimit="0 .99 .01" />
+    <geom conaffinity="0" contype="1" friction=".7 .1 .1" />
+    <motor ctrllimited="true" ctrlrange="-1 1" />
+    <site size="0.01" />
+    <default class="walker">
+      <geom material="self" type="capsule" />
+      <joint axis="0 -1 0" />
+    </default>
+  </default>
+
+  <worldbody>
+    <geom conaffinity="1" material="grid" name="floor" pos="248 0 0" size="250 .8 .2" type="plane" zaxis="0.18320552607052545 0.0 0.9830746335946331" />
+    <body childclass="walker" name="torso" pos="4.234131973745093 0.0 46.73158539220924">
+      <light mode="trackcom" name="light" pos="0 0 2" />
+      <camera euler="60 0 0" mode="trackcom" name="side" pos="0 -2 .7" />
+      <camera mode="trackcom" name="back" pos="-2 0 .5" xyaxes="0 -1 0 1 0 3" />
+      <joint armature="0" axis="0 0 1" damping="0.1347045458464222" limited="false" name="rootz" type="slide" />
+      <joint armature="0" axis="1 0 0" damping="0.18259858454576147" limited="false" name="rootx" type="slide" />
+      <joint armature="0" axis="0 1 0" damping="0.05263404443556992" limited="false" name="rooty" type="hinge" />
+      <geom density="1601.935048317629" friction="0.6637614678914489 0.05411122348562739 0.05158837762742109" name="torso" size="0.07 0.3" />
+      <body name="right_thigh" pos="0 -.05 -0.3">
+        <joint damping="0.09110938943208541" name="right_hip" range="-20 100" />
+        <geom density="499.14937886909" friction="0.42574662027181087 0.05443083728777373 0.18628818641568515" name="right_thigh" pos="0 0 -0.225" size="0.05 0.225" />
+        <body name="right_leg" pos="0 0 -0.7">
+          <joint damping="0.1496813128006358" name="right_knee" pos="0 0 0.25" range="-150 0" />
+          <geom density="821.0631199255396" friction="0.71910705353384 0.04884204742895282 0.18365448736576506" name="right_leg" size="0.04 0.25" />
+          <body name="right_foot" pos="0.06 0 -0.25">
+            <joint damping="0.12432969838554037" name="right_ankle" pos="-0.06 0 0" range="-45 45" />
+            <geom density="784.935159726479" friction="1.4426088380352322 0.0758857757677862 0.13683297896029775" name="right_foot" size="0.05 0.14052716179065725" zaxis="1 0 0" />
+          </body>
+        </body>
+      </body>
+      <body name="left_thigh" pos="0 .05 -0.3">
+        <joint damping="0.2168995806659626" name="left_hip" range="-20 100" />
+        <geom density="789.6215147268081" friction="0.9311880074911909 0.1366338183206123 0.20836522038200653" name="left_thigh" pos="0 0 -0.225" size="0.05 0.225" />
+        <body name="left_leg" pos="0 0 -0.7">
+          <joint damping="0.05343803360751416" name="left_knee" pos="0 0 0.25" range="-150 0" />
+          <geom density="912.7005012992814" friction="1.4839813806826623 0.08848467126858606 0.05338447234780061" name="left_leg" size="0.04 0.25" />
+          <body name="left_foot" pos="0.06 0 -0.25">
+            <joint damping="0.07866894596721503" name="left_ankle" pos="-0.06 0 0" range="-45 45" />
+            <geom density="1725.903073125762" friction="0.37849486424268625 0.05444531127039859 0.0767362575864677" name="left_foot" size="0.05 0.1604850260069565" zaxis="1 0 0" />
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <sensor>
+    <subtreelinvel body="torso" name="torso_subtreelinvel" />
+  </sensor>
+
+  <actuator>
+    <motor gear="100" joint="right_hip" name="right_hip" />
+    <motor gear="50" joint="right_knee" name="right_knee" />
+    <motor gear="20" joint="right_ankle" name="right_ankle" />
+    <motor gear="100" joint="left_hip" name="left_hip" />
+    <motor gear="50" joint="left_knee" name="left_knee" />
+    <motor gear="20" joint="left_ankle" name="left_ankle" />
+  </actuator>
+</mujoco>

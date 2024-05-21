@@ -1,0 +1,70 @@
+<mujoco model="planar walker">
+  <include file="./common/visual.xml" />
+  <include file="./common/skybox.xml" />
+  <include file="./common/materials.xml" />
+
+  <option timestep="0.0025" />
+
+  <statistic center="0 0 1" extent="2" />
+
+  <default>
+    <joint armature="0.01" damping=".1" limited="true" solimplimit="0 .99 .01" />
+    <geom conaffinity="0" contype="1" friction=".7 .1 .1" />
+    <motor ctrllimited="true" ctrlrange="-1 1" />
+    <site size="0.01" />
+    <default class="walker">
+      <geom material="self" type="capsule" />
+      <joint axis="0 -1 0" />
+    </default>
+  </default>
+
+  <worldbody>
+    <geom conaffinity="1" material="grid" name="floor" pos="248 0 0" size="250 .8 .2" type="plane" zaxis="0.10353962161113768 0.0 0.9946253298386395" />
+    <body childclass="walker" name="torso" pos="1.3536261243396552 0.0 26.976751225529874">
+      <light mode="trackcom" name="light" pos="0 0 2" />
+      <camera euler="60 0 0" mode="trackcom" name="side" pos="0 -2 .7" />
+      <camera mode="trackcom" name="back" pos="-2 0 .5" xyaxes="0 -1 0 1 0 3" />
+      <joint armature="0" axis="0 0 1" damping="0.10762780530060063" limited="false" name="rootz" type="slide" />
+      <joint armature="0" axis="1 0 0" damping="0.060274250837811454" limited="false" name="rootx" type="slide" />
+      <joint armature="0" axis="0 1 0" damping="0.09473976595026155" limited="false" name="rooty" type="hinge" />
+      <geom density="1396.567701507997" friction="0.32649488152837103 0.11535415251053725 0.09082986048045036" name="torso" size="0.07 0.3" />
+      <body name="right_thigh" pos="0 -.05 -0.3">
+        <joint damping="0.1991788635999073" name="right_hip" range="-20 100" />
+        <geom density="964.7520807148015" friction="1.3418772110678974 0.08159653110509774 0.21770846977680647" name="right_thigh" pos="0 0 -0.225" size="0.05 0.225" />
+        <body name="right_leg" pos="0 0 -0.7">
+          <joint damping="0.053604293085661774" name="right_knee" pos="0 0 0.25" range="-150 0" />
+          <geom density="1113.1650968535564" friction="1.3903617741246375 0.13263093632821854 0.048222418087464414" name="right_leg" size="0.04 0.25" />
+          <body name="right_foot" pos="0.06 0 -0.25">
+            <joint damping="0.20841282664465807" name="right_ankle" pos="-0.06 0 0" range="-45 45" />
+            <geom density="824.9889543514297" friction="1.2515129625876897 0.06857435931047044 0.15367255293434737" name="right_foot" size="0.05 0.06527482070809221" zaxis="1 0 0" />
+          </body>
+        </body>
+      </body>
+      <body name="left_thigh" pos="0 .05 -0.3">
+        <joint damping="0.17594546669726915" name="left_hip" range="-20 100" />
+        <geom density="673.6667811228052" friction="1.2396162051150823 0.1245569576728657 0.12969245475238733" name="left_thigh" pos="0 0 -0.225" size="0.05 0.225" />
+        <body name="left_leg" pos="0 0 -0.7">
+          <joint damping="0.04825426194448904" name="left_knee" pos="0 0 0.25" range="-150 0" />
+          <geom density="582.1396559791002" friction="1.0207511758841343 0.06946091771921781 0.11077941406848656" name="left_leg" size="0.04 0.25" />
+          <body name="left_foot" pos="0.06 0 -0.25">
+            <joint damping="0.18923090793566988" name="left_ankle" pos="-0.06 0 0" range="-45 45" />
+            <geom density="694.5749688862269" friction="0.6740973685219077 0.054456084820328404 0.07619012371865574" name="left_foot" size="0.05 0.0770419593949846" zaxis="1 0 0" />
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <sensor>
+    <subtreelinvel body="torso" name="torso_subtreelinvel" />
+  </sensor>
+
+  <actuator>
+    <motor gear="100" joint="right_hip" name="right_hip" />
+    <motor gear="50" joint="right_knee" name="right_knee" />
+    <motor gear="20" joint="right_ankle" name="right_ankle" />
+    <motor gear="100" joint="left_hip" name="left_hip" />
+    <motor gear="50" joint="left_knee" name="left_knee" />
+    <motor gear="20" joint="left_ankle" name="left_ankle" />
+  </actuator>
+</mujoco>
