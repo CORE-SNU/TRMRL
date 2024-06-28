@@ -15,7 +15,7 @@ from rlkit.torch.sac.policies import TanhGaussianPolicy
 from rlkit.torch.networks import FlattenMlp, MlpEncoder, RecurrentEncoder
 from rlkit.torch.sac.agent import PEARLAgent
 from configs.default import default_config
-from caml import deep_update_dict
+from trmrl import deep_update_dict
 from rlkit.torch.sac.policies import MakeDeterministic
 from rlkit.samplers.util import rollout
 
