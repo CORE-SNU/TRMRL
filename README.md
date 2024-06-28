@@ -1,7 +1,7 @@
 Task-relevant Meta-reinforcemen Learning (TRMRL)
 ====================================================
 
-This repository includes an official PyTorch implementation of **deep reinforcement learning methods for semi-MDP**. Our implementation is based on [PEARL][pearllink] implementation, and use a code from [dm_control][dmcontrollink] to generate a task and visualize the learned results.
+This repository includes an official PyTorch implementation of **On task-relevant loss functions in meta-reinforcement learning**. Our implementation is based on [PEARL][pearllink] implementation, and use a code from [dm_control][dmcontrollink] to generate a task and visualize the learned results.
 ## 1. Requirements
 
 The implementation is confirmed to successfully work under the following dependencies:
