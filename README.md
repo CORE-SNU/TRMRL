@@ -1,6 +1,8 @@
 Task-relevant Meta-reinforcemen Learning (TRMRL)
 ====================================================
 ![TRMRL](https://github.com/user-attachments/assets/90d86e2b-6cbf-4d6d-92fe-322480da2a58)
+
+
 This repository includes an official PyTorch implementation of [**On Task-Relevant Loss Functions in Meta-reinforcement Learning**][paperlink], which will appear in [L4DC 2024][l4dclink]. Our implementation is based on [PEARL][pearllink] implementation, and use a code from [dm_control][dmcontrollink] to generate a task and visualize the learned results.
 ## 1. Requirements
 
